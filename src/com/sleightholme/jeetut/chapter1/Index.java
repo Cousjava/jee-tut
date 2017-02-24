@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet({"/index","/"})
 public class Index extends HttpServlet {
-	private static final long serialVersionUID = 8L;
+	private static final long serialVersionUID = 9L;
     
 	private HttpServletRequest request;
 	private HttpServletResponse response;

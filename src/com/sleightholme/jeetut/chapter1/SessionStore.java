@@ -16,7 +16,7 @@ public class SessionStore extends Store{
 	public void setup(){
 		super.setup();
 		strings.add("This is the session store");
-		name = "session";
+		names.setName("session");
 		
 	}
 	

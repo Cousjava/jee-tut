@@ -22,7 +22,7 @@ public class ConversationStore extends Store{
 	public void setup(){
 		super.setup();
 		strings.add("This is the conversations store");
-		name = "conversation";
+		names.setName("conversation");
 		beginConversation();
 	}
 

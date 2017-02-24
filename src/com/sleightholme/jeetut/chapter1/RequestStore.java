@@ -11,7 +11,7 @@ public class RequestStore extends Store{
 	public void setup(){
 		super.setup();
 		strings.add("This is the request scoped store");
-		name = "request";
+		names.setName("request");
 	}
 	
 }

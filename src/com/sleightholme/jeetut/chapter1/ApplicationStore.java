@@ -16,7 +16,7 @@ public class ApplicationStore extends Store{
 	public void setup(){
 		super.setup();
 		strings.add("This is the application store");
-		name = "application";
+		names.setName("application");
 	}
 	
 }

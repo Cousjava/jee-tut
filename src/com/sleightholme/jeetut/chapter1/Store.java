@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.New;
+import javax.inject.Inject;
 
 public class Store implements Serializable{
 
@@ -14,6 +16,10 @@ public class Store implements Serializable{
 	protected ArrayList<String> strings;
 	protected String name = "";
 
+	@Inject
+	@New
+	protected NameString names;
+	
 	public Store(){
 		
 	}
@@ -34,10 +40,11 @@ public class Store implements Serializable{
 	public void setup(){
 		strings = new ArrayList<String>();
 		strings.add("There is some data here!");
+		names = new NameString();
 	}
 	
 	public String getName(){
-		return name;
+		return names.getName();
 	}
 	
 }
