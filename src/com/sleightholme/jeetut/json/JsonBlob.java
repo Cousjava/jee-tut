@@ -2,9 +2,15 @@ package com.sleightholme.jeetut.json;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.json.*;
 import javax.servlet.ServletConfig;
@@ -39,7 +45,7 @@ public class JsonBlob extends ExtendedServlet {
 		
 		readData("/test.json");
 		displayObject(obj);
-		writeObject(obj, "json/out.json");
+		writeObject(obj, "out.json");
 		footer();
 	}
 	
@@ -59,10 +65,22 @@ public class JsonBlob extends ExtendedServlet {
 	}
 	
 	private void displayObject(JsonArray obj){
-		out.println(obj);
+		out.println(obj.toString());
+		
 	}
 	
 	private void writeObject(JsonArray obj, String filepath){
+		
+		try (BufferedWriter write = new BufferedWriter(new FileWriter(filepath))){
+			write.write(obj.toString());
+			out.println("<p>Successfully written to file</p>");
+		} catch (FileNotFoundException e) {
+			out.println("<p>Error writing to file...</p>");
+			e.printStackTrace();
+		} catch (IOException e1) {
+			out.println("<p>Error writing to file...</p>");
+			e1.printStackTrace();
+		}
 		
 	}
 
