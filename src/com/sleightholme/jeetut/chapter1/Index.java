@@ -20,7 +20,7 @@ public class Index extends HttpServlet {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private PrintWriter out;
-	private String pageTitle;
+	private String pageTitle = "CDI Index";
 	
 	@Inject
 	private ApplicationStore longStore;

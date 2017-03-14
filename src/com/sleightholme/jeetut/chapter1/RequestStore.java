@@ -6,6 +6,11 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class RequestStore extends Store{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@PostConstruct
 	@Override
 	public void setup(){

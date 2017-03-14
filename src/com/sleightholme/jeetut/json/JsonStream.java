@@ -63,53 +63,82 @@ public class JsonStream extends ExtendedServlet {
 			JsonArray strarr = null;
 			JsonParser.Event event = read.next();
 			
+			JsonObject currObj;
+			JsonArray curarr;
+			
+			int indents = 0;
+			out.print("<div>");
 			switch (event){
 			case START_ARRAY:
-				strarr = arrayBuilder.build(); break;
+				//strarr = arrayBuilder; break;
 			case START_OBJECT:
-				strobj = objectBuilder.build(); break;
+				//strobj = objectBuilder.build();
+				indents++;
+				break;
 			default:
 				throw new JsonException(filepath);	
 			}
 			
-			JsonObject currobj;
-			JsonArray curarr;
 			
 			while(read.hasNext()){
 				event = read.next();
+				indent(indents);
 				switch(event) {
 				case START_ARRAY:
-					curarr = arrayBuilder.build(); break;
+					
+					curarr = arrayBuilder.build(); 
+					out.println("[</br>");
+					indents++;
+					break;
 			      case END_ARRAY:
 			    	  if (strobj != null){
+			    		
 			    		  //TODO
 			    	  }
+			    	  indents--;
+			    	  out.println("],</br>");
+			    	  break;
 			      case START_OBJECT:
+			    	  indents++;
+			    	  out.println("{</br>");break;
 			      case END_OBJECT:
+			    	  currObj = objectBuilder.build();
+			    	  out.println("},</br>");
+			    	  indents--;
+			    	  break;
 			      case VALUE_FALSE:
+			    	  out.println("false,</br>");
+			    	  break;
 			      case VALUE_NULL:
+			    	  out.println("null,</br>");
+			    	  break;
 			      case VALUE_TRUE:
-			         System.out.println(event.toString());
+			         out.println("true,</br>");
 			         break;
 			      case KEY_NAME:
-			         System.out.print(event.toString() + " " +
-			                          read.getString() + " - ");
+			         out.print(read.getString() + " : ");
 			         break;
 			      case VALUE_STRING:
 			      case VALUE_NUMBER:
-			         System.out.println(event.toString() + " " +
-			                            read.getString());
+			         out.println(read.getString() + ",</br>");
 			         break;
 				
 				}
 			}
+			out.print("</div>");
 			out.println("Succesfully read data...");
-		} catch (NullPointerException e) {
-			out.println("<p>JSON file not found</p>");
+		} catch (Exception e) {
+			out.println("<p>Error reading from file. See log for details.</p>");
 			e.printStackTrace();
 		}
 		
 		
+	}
+	
+	private void indent(int amount){
+		for (int i = 0; i < amount; i++){
+			out.print("&emsp;&emsp;");
+		}
 	}
 	
 
