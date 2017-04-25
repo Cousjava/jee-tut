@@ -42,7 +42,7 @@ public class MessageProducer {
         ctx.createProducer().send(queue, msg);
     }
     
-    @Schedule(dayOfMonth = "*", dayOfWeek = "*", hour = "*", minute = "*", second = "*/30", persistent = false)
+    //@Schedule(dayOfMonth = "*", dayOfWeek = "*", hour = "*", minute = "*", second = "*/30", persistent = false)
     public void myTimer() {
         sendMessage(new Date().toString());
     }
