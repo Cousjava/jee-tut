@@ -12,19 +12,20 @@ public class User {
 	private int ID;
 	private String username;
 	private String email;
-	@OneToOne (fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne (fetch = FetchType.LAZY, orphanRemoval = true, cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name = "basket_fk")
 	private Basket basket;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateRegistered;
 	
 	public User(){
-		
+		dateRegistered = new Date();
 	}
 	
 	public User(String username, String email){
-		this.username = username;
-		this.email = email;
+            this();
+            this.username = username;
+            this.email = email;
 		
 	}
 	
@@ -44,6 +45,10 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
+        
+        public void setRegistrationDate(Date date){
+            this.dateRegistered = date;
+        }
 	
 	public Date getRegistrationDate(){
 		return dateRegistered;

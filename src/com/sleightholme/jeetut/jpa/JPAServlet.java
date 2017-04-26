@@ -20,6 +20,8 @@ import javax.ejb.EJB;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.PersistenceUnit;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
@@ -28,7 +30,6 @@ import javax.transaction.UserTransaction;
 /**
  * Servlet implementation class Manager
  */
-//@PersistenceContext(unitName="jpaexample", name="persistence/em")
 @WebServlet("/Jpa/Manager")
 public class JPAServlet extends ExtendedServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,11 +40,7 @@ public class JPAServlet extends ExtendedServlet {
 	@EJB
         Manager man;
         
-        //@PersistenceUnit(unitName="jee-tut-SNAPSHOTPU")
-        //private EntityManagerFactory emf;
-        
         EntityManager em;
-	//EntityTransaction tx;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -58,8 +55,6 @@ public class JPAServlet extends ExtendedServlet {
 	public void init(ServletConfig config) throws ServletException {
 		title = "JPA Manager";
 		super.init(config);
-		//EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-example");
-		//em = emf.createEntityManager();
 		
 	}
 
@@ -70,32 +65,34 @@ public class JPAServlet extends ExtendedServlet {
             try {
                 super.doGet(request, response);
                 em = man.getEntityManager();
-                //InitialContext ic = new InitialContext();
-                //em = (EntityManager) ic.lookup("java:comp/env/persistence/em");
-                //tx = em.getTransaction();
                 utx.begin();
-                //em = emf.createEntityManager();
                 out.println("<p>Creating a new user and basket</p>");
-                User user = new User();
+                User user = new User("jonathan", "jonathan.coustick@payara.fish");
                 Basket basket = new Basket();
                 user.setBasket(basket);
                 out.println("<p>Persisting classess</p>");
                 em.persist(user);
-                em.persist(basket);
+                //em.persist(basket); Not needed as Basket in user is cascaded
                 out.println("<p>Committing</p>");
                 utx.commit();
                 
-            } catch (NotSupportedException ex) {
+                out.println("Retrieving data: User 1");
+                User retrievedUser = em.find(User.class, 1);
+                out.println("<p>" + retrievedUser.getUsername() + "</br>");
+                out.println(retrievedUser.getEmail() + "</br>");
+                out.println(retrievedUser.getRegistrationDate().toString() + "</br>");
+                out.println("BasketID: " + retrievedUser.getBasket().getID() + "</p>");
+            } catch (NotSupportedException | SystemException ex) {
+                out.println(ex.toString());
                 Logger.getLogger(JPAServlet.class.getName()).log(Level.SEVERE, null, ex);
                 out.println(ex.toString());
-            } catch (SystemException ex) {
-                Logger.getLogger(JPAServlet.class.getName()).log(Level.SEVERE, null, ex);
-                out.println(ex.toString());
-            } catch (Exception ex){
+            } catch (RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex){
                 out.println(ex.toString());
                 Logger.getLogger(JPAServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NullPointerException ex){
+                out.println(ex.toString());
             }
-            out.println("<p>finished</p>");
+            out.println("<p>Finished</p>");
             super.footer();
 	}
 	

@@ -9,5 +9,9 @@ public class Basket {
 
 	@Id @GeneratedValue
 	private int id;
+        
+        public int getID(){
+            return id;
+        }
 	
 }
