@@ -21,7 +21,7 @@ import com.sleightholme.jeetut.util.ExtendedServlet;
 public class Manager extends ExtendedServlet {
 	private static final long serialVersionUID = 1L;
        
-	//@PersistenceContext(unitName = "jpa-example")
+	@PersistenceContext(unitName = "jpaexample")
 	EntityManager em;
 	EntityTransaction tx;
 	
@@ -38,10 +38,9 @@ public class Manager extends ExtendedServlet {
 	public void init(ServletConfig config) throws ServletException {
 		title = "JPA Manager";
 		super.init(config);
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-example");
-		em = emf.createEntityManager();
-		tx = em.getTransaction();
-		tx.begin();
+		//EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-example");
+		//em = emf.createEntityManager();
+		
 	}
 
 	/**
@@ -49,6 +48,8 @@ public class Manager extends ExtendedServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
+		tx = em.getTransaction();
+		tx.begin();
 		User user = new User();
 		Basket basket = new Basket();
 		user.setBasket(basket);
