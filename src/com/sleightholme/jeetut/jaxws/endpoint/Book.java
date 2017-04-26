@@ -5,6 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebParam.Mode;
 import javax.jws.WebService;
+import javax.ws.rs.core.Response;
 
 @WebService
 public class Book {
@@ -27,11 +28,10 @@ public class Book {
 		return title;
 	}
 	
-	@Oneway
 	@WebMethod
-	public String setTitle(@WebParam(name="title", mode = Mode.IN) String title){
+	public Response setTitle(@WebParam(name="title", mode = Mode.IN) String title){
 		this.title = title;
-		return SUCCESS;
+		return Response.status(200).build();
 	}
 	
 	@WebMethod

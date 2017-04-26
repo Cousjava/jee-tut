@@ -1,10 +1,11 @@
 package com.sleightholme.jeetut.jpa;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
 
 	@Id @GeneratedValue
