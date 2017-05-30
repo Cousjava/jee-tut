@@ -19,7 +19,7 @@ public class ExtendedServlet extends HttpServlet {
 	protected PrintWriter out;
 	protected String title = "";
 	protected String root;
-	
+        
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,7 +33,7 @@ public class ExtendedServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		out = response.getWriter();
 		root = getServletContext().getContextPath();
-		header();
+		//header();
 	}
 
 	/**

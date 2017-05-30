@@ -1,4 +1,4 @@
-package com.sleightholme.jeetut.chapter1;
+package com.sleightholme.jeetut.cdi;
 
 import java.io.Serializable;
 import java.util.ArrayList;
