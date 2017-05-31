@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ExtendedServlet
  */
-@WebServlet("/ExtendedServlet")
+@WebServlet()
 public class ExtendedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected PrintWriter out;
+        protected HttpServletRequest request;
+        protected HttpServletResponse response;
 	protected String title = "";
 	protected String root;
         
@@ -28,15 +30,6 @@ public class ExtendedServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		out = response.getWriter();
-		root = getServletContext().getContextPath();
-		//header();
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,6 +37,8 @@ public class ExtendedServlet extends HttpServlet {
 	}
 	
 	public void header(){
+            response.setContentType("text/html;charset=UTF-8");
+            out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>" + title + "</title>");
@@ -54,5 +49,23 @@ public class ExtendedServlet extends HttpServlet {
 	public void footer(){
 		out.println("</body></html>");
 	}
+        
+        @Override
+        protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+            this.request = request;
+            this.response = resp;
+            out = response.getWriter();
+            root = getServletContext().getContextPath();
+            super.service(request, resp);
+        }
+        
+    protected void newLine(){
+        out.println("</br>");
+    }
 
+    @Override
+    public String getServletInfo() {
+        return title;
+    }
+    
 }

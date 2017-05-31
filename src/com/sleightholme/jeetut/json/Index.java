@@ -29,7 +29,7 @@ public class Index extends ExtendedServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
+		header();
 		out.println("<a href=\"" + root +"/Json/Stream\">Stream API Example</a>&nbsp;");
 		out.println("<a href=\"" + root +"/Json/Blob\">Object API Example</a>&nbsp;");
 		out.println(" 1 <p>");

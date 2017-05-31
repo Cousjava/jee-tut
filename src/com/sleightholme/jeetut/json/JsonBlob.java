@@ -41,7 +41,7 @@ public class JsonBlob extends ExtendedServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
+		header();
 		
 		readData("/test.json");
 		displayObject(obj);

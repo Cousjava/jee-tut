@@ -36,8 +36,9 @@ public class JsonStream extends ExtendedServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+        @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
+		header();
 		readData("/test.json");
 		
 		footer();
