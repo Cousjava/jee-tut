@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>jee-tut</groupId>
   <artifactId>jee-tut</artifactId>
-  <version>0.8.2-SNAPSHOT</version>
+  <version>0.8.3-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>jee-tut</name>
   <description>Java EE Samples</description>

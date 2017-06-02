@@ -63,7 +63,7 @@ public class JPAServlet extends ExtendedServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             try {
-                super.doGet(request, response);
+                header();
                 em = man.getEntityManager();
                 utx.begin();
                 out.println("<p>Creating a new user and basket</p>");

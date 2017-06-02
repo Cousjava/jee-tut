@@ -40,24 +40,13 @@
 package com.sleightholme.jeetut.jbatch;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URL;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.JobExecution;
-import javax.batch.runtime.JobInstance;
-import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
