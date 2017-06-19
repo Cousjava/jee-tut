@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 /**
- * Servlet implementation class mysqlexample
+ * Servlet implementation class MysqlExample
  */
 @WebServlet({ "/mysqlexample", "/MySQl" })
-public class mysqlexample extends HttpServlet {
+public class MysqlExample extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected PrintWriter out;
@@ -35,7 +35,7 @@ public class mysqlexample extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mysqlexample() {
+    public MysqlExample() {
         super();
     }
     

@@ -2,12 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sleightholme</groupId>
   <artifactId>jee-tut</artifactId>
-  <version>0.8.3-SNAPSHOT</version>
+  <version>0.8.4-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>jee-tut</name>
   <description>Java EE Samples</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -21,7 +20,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>3.0.0</version>
         <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
+          <warSourceDirectory>src</warSourceDirectory>
         </configuration>
       </plugin>
     </plugins>
