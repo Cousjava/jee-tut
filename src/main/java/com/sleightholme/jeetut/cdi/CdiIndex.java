@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class First
  */
-@WebServlet({"/index","/Index"})
-public class Index extends HttpServlet {
+@WebServlet({"/cdi/","/cdi/Index","/cdi"})
+public class CdiIndex extends HttpServlet {
 	private static final long serialVersionUID = 9L;
     
 	private HttpServletRequest request;
@@ -37,7 +37,7 @@ public class Index extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public CdiIndex() {
         super();
     }
 
