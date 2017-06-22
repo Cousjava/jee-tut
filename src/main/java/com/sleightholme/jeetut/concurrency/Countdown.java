@@ -78,11 +78,11 @@ public class Countdown extends ExtendedServlet {
     
     private void countdown() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(2);
-        Marathon first = new Marathon(latch, out);
-        Marathon second = new Marathon(latch, out);
-        first.run();
+        Thread first = new Thread(new Marathon(latch, out));
+        Thread second = new Thread(new Marathon(latch, out));
+        first.start();
         out.println("Kicked off first, about to kick off second + </br>");
-        second.run();
+        second.start();
         latch.await();
         out.println("Finished countdown");
     }

@@ -1,10 +1,7 @@
 package com.sleightholme.jeetut.concurrency;
 
 import java.io.PrintWriter;
-import static java.lang.Thread.sleep;
 import java.util.concurrent.CountDownLatch;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -36,12 +33,12 @@ public class Marathon implements Runnable {
     }
     
     private void doWork() throws InterruptedException{
-        for (int i = 1; i <= 20; i++){
+        for (int i = 1; i <= 10; i++){
             out.print(id + " : " + i + " is ");
-            if (!isPrime(i)){
+            /*if (!isPrime(i)){
                 out.print("not ");
             }
-            out.print("prime.</br>");
+            out.print("prime.</br>");*/
         }
     }
     
