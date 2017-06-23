@@ -15,6 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 public class Index extends ExtendedServlet {
 
     @Override
+    public void init() throws ServletException {
+        super.init();
+        title = "Java EE Examples Index";
+    }
+    
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         header();
@@ -26,6 +32,7 @@ public class Index extends ExtendedServlet {
         out.println("<p><a href=\"JPA/Manager\">JPA</a></p>");
         out.println("<p><a href=\"Json/Index\">JSON</a></p>");
         out.println("<p><a href=\"Mysql\">MySQL</a></p>");
+        out.println("<p><a href=\"Validation\">Bean Validation</a></p>");
         footer();
     }
 
