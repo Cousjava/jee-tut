@@ -23,12 +23,12 @@ public class Index extends ExtendedServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         header();
+        
         out.println("<h1>" + title + "</h1>");
         out.println("<p><a href=\"Countdown\">Countdown</a> - CountdownLatch example</p>");
         out.println("<p><a href=\"CycleBarrier\">CycleBarrier</a> - CyclicBarrier example");
         out.println("<p><a href=\"StockExchange\">StockExchange</a> - Exchange example</p>");
-        
-        
+
         footer();
     }
 
