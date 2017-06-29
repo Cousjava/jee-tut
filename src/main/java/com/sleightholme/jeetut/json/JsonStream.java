@@ -33,9 +33,6 @@ public class JsonStream extends ExtendedServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
         @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		header();
@@ -44,9 +41,7 @@ public class JsonStream extends ExtendedServlet {
 		footer();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -130,7 +125,7 @@ public class JsonStream extends ExtendedServlet {
 			out.println("Succesfully read data...");
 		} catch (Exception e) {
 			out.println("<p>Error reading from file. See log for details.</p>");
-			e.printStackTrace();
+			e.printStackTrace(out);
 		}
 		
 		

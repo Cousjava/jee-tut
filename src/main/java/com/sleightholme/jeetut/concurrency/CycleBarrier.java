@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jonathan coustick
  */
-@WebServlet(name = "CycleBarrier", urlPatterns = {"/CycleBarrier"})
+@WebServlet(name = "CycleBarrier", urlPatterns = {"/Concurrency/CycleBarrier"})
 public class CycleBarrier extends ExtendedServlet {
 
     @Override

@@ -29,10 +29,11 @@ public class Index extends ExtendedServlet {
         out.println("<p><a href=\"EJBExample\">EJBs</a></p>");
         out.println("<p><a href=\"book\">JAX-WS</a></p>");
         out.println("<p><a href=\"JobServlet\">JBatch</a></p>");
-        out.println("<p><a href=\"JPA/Manager\">JPA</a></p>");
+        out.println("<p><a href=\"Jpa/Manager\">JPA</a></p>");
         out.println("<p><a href=\"Json/Index\">JSON</a></p>");
         out.println("<p><a href=\"Mysql\">MySQL</a></p>");
         out.println("<p><a href=\"Validation\">Bean Validation</a></p>");
+        out.println("<p><a href=\"Concurrency/\">Concurrency</a></p>");
         footer();
     }
 

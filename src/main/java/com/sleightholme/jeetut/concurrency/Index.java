@@ -26,6 +26,8 @@ public class Index extends ExtendedServlet {
         out.println("<h1>" + title + "</h1>");
         out.println("<p><a href=\"Countdown\">Countdown</a> - CountdownLatch example</p>");
         out.println("<p><a href=\"CycleBarrier\">CycleBarrier</a> - CyclicBarrier example");
+        out.println("<p><a href=\"StockExchange\">StockExchange</a> - Exchange example</p>");
+        
         
         footer();
     }
