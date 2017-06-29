@@ -22,7 +22,7 @@ public class Queries implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Resource(lookup="jdbc/postgrespool")
+	@Resource(lookup="jdbc/mysqlpool")
 	DataSource ds;
 	
 	private static final String dropTable = "DROP TABLE IF EXISTS rivers";
@@ -36,11 +36,11 @@ public class Queries implements Serializable {
 			Logger.getLogger(getClass()).log(Level.SEVERE, "Data source is null!");
 			return;
 		}
-		Connection connection = ds.getConnection();
-		Statement state = connection.createStatement();
-		state.execute(dropTable);
-		state.execute(createTable);
-		connection.close();
+            try (Connection connection = ds.getConnection()) {
+                Statement state = connection.createStatement();
+                state.execute(dropTable);
+                state.execute(createTable);
+            }
 		
 	}
 	

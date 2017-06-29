@@ -24,8 +24,6 @@ public class MysqlExample extends ExtendedServlet {
 
     private static final long serialVersionUID = 1L;
 
-    protected PrintWriter out;
-
     @Inject
     Queries q;
 

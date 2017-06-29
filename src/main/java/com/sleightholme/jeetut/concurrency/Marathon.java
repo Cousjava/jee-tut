@@ -34,7 +34,8 @@ public class Marathon implements Runnable {
     
     private void doWork() throws InterruptedException{
         for (int i = 1; i <= 10; i++){
-            out.print(id + " : " + i + " is ");
+            String message = id + " : " + i + " is ";
+            out.print(message);
             /*if (!isPrime(i)){
                 out.print("not ");
             }
