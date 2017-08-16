@@ -49,7 +49,9 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.ibm.jbatch.container.servicesmanager.ServicesManager;
+import com.ibm.jbatch.container.servicesmanager.ServicesManagerImpl;
+import com.ibm.jbatch.container.services.IPersistenceManagerService;
 /**
  *
  * @author jonathan coustick
@@ -64,6 +66,7 @@ public class JobServlet extends ExtendedServlet {
     }
 
     
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         header();
@@ -71,7 +74,13 @@ public class JobServlet extends ExtendedServlet {
         JobOperator jobop = BatchRuntime.getJobOperator();
         Properties props = new Properties();
         long jobid = jobop.start("batchprocess", props);
-        out.print(jobid);
+        ServicesManager manager = ServicesManagerImpl.getInstance();
+        IPersistenceManagerService ps = manager.getPersistenceManagerService();
+        String tag = ps.getJobCurrentTag(jobid);
+        
+        
+        out.print("Job id is " + jobid);
+        out.print("; apptag is " + tag);
         newLine();
         out.println("Finished results avaliable <a href=\"JobEnd\">here</a>");
         

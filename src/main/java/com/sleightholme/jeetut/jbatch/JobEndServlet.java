@@ -56,12 +56,14 @@ import javax.servlet.http.HttpServletResponse;
 public class JobEndServlet extends ExtendedServlet {
 
 
+    @Override
     public void init() throws ServletException {
         title = "JBatch End Results";
         super.init();
     }
     
     
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         header();
