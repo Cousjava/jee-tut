@@ -2,6 +2,8 @@ package com.sleightholme.jeetut;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import javax.management.MBeanServer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +36,14 @@ public class Index extends ExtendedServlet {
         out.println("<p><a href=\"Mysql\">MySQL</a></p>");
         out.println("<p><a href=\"Validation\">Bean Validation</a></p>");
         out.println("<p><a href=\"Concurrency/\">Concurrency</a></p>");
+        
+        MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
+        out.println("The default MBeanServer is " + mBeanServer.getDefaultDomain() + "</br>");
+        for (String server : mBeanServer.getDomains()){
+            out.println("A MBeanServer is " + server + "</br>");
+        }
+        
+        
         footer();
     }
 

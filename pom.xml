@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sleightholme</groupId>
   <artifactId>jee-tut</artifactId>
-  <version>0.10.6-SNAPSHOT</version>
+  <version>0.11.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>jee-tut</name>
   <description>Java EE Samples</description>
@@ -42,13 +42,6 @@
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
             <version>2.5.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.batch</groupId>
-            <artifactId>payara-jbatch</artifactId>
-            <version>4.1.2.173</version>
-            <type>jar</type>
             <scope>provided</scope>
         </dependency>
         <dependency>
