@@ -43,6 +43,8 @@ public class Index extends ExtendedServlet {
             out.println("A MBeanServer is " + server + "</br>");
         }
         
+        out.println("The JVM is " + System.getProperty("java.vm.name") + "</br>");
+        
         
         footer();
     }

@@ -2,7 +2,6 @@ package com.sleightholme.jeetut.mysql;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -11,12 +10,12 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 /**
+ * @author jonathan
  * Servlet implementation class MysqlExample
  */
 @WebServlet({"/mysqlexample", "/Mysql"})
@@ -37,15 +36,17 @@ public class MysqlExample extends ExtendedServlet {
         super.init();
         title = "MySQL Connection Example";
     }
-
+    
+    
     protected void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         header();
         if (ds == null) {
             out.println("Data source in servlet is null");
         } else {
             out.println("Data source is valid!");
+            out.println();
         }
-
+        
         try {
             q.postConstruct();
             setupData();
@@ -70,14 +71,6 @@ public class MysqlExample extends ExtendedServlet {
         footer();
     }
 
-    /**
-     * @param request
-     * @param response
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         run(request, response);
@@ -100,8 +93,9 @@ public class MysqlExample extends ExtendedServlet {
     }
 
     private void printData(ResultSet rs) {
-        out.println("<table>");
+        
         try {
+            out.println("<table>");
             while (rs.next()) {
 
                 int id = rs.getInt(1);
@@ -110,11 +104,10 @@ public class MysqlExample extends ExtendedServlet {
                 out.print("<tr><td>" + id + "</td>");
                 out.print("<td>" + rname + "</td><td>" + length + "</td></tr>\n");
             }
+            out.println("</table>");
         } catch (SQLException e) {
-
             e.printStackTrace();
-        }
-        out.println("</table>");
+        }  
     }
 
 }

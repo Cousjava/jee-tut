@@ -40,7 +40,9 @@ public class JsonBlob extends ExtendedServlet {
 
         readData("/test.json");
         displayObject(obj);
-        writeObject(obj, "out.json");
+        String filePath = request.getServletContext().getRealPath("/");
+        out.println(filePath);
+        writeObject(obj, filePath + "out.json");
         footer();
     }
 
@@ -64,6 +66,7 @@ public class JsonBlob extends ExtendedServlet {
 
     private void writeObject(JsonArray obj, String filepath) {
 
+        
         try (BufferedWriter write = new BufferedWriter(new FileWriter(filepath))) {
             write.write(obj.toString());
             out.println("<p>Successfully written to file</p>");

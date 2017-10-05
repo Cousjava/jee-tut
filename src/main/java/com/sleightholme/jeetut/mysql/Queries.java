@@ -22,7 +22,7 @@ public class Queries implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Resource(lookup="jdbc/mysqlpool")
+	@Resource(name="jdbc/mysqlpool")
 	DataSource ds;
 	
 	private static final String dropTable = "DROP TABLE IF EXISTS rivers";
