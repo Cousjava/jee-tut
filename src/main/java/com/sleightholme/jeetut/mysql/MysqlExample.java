@@ -26,7 +26,7 @@ public class MysqlExample extends ExtendedServlet {
     @Inject
     Queries q;
 
-    @Resource
+    @Resource(name = "jdbc/__default")
     DataSource ds;
 
     HashMap<String, Integer> data;
@@ -44,6 +44,7 @@ public class MysqlExample extends ExtendedServlet {
             out.println("Data source in servlet is null");
         } else {
             out.println("Data source is valid!");
+            out.println(ds.toString());
             out.println();
         }
         

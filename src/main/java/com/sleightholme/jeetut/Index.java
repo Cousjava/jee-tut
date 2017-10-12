@@ -36,6 +36,7 @@ public class Index extends ExtendedServlet {
         out.println("<p><a href=\"Mysql\">MySQL</a></p>");
         out.println("<p><a href=\"Validation\">Bean Validation</a></p>");
         out.println("<p><a href=\"Concurrency/\">Concurrency</a></p>");
+        out.println("<p><a href=\"JMSSender\">Java Messaging Service</a></p>");
         
         MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
         out.println("The default MBeanServer is " + mBeanServer.getDefaultDomain() + "</br>");

@@ -13,16 +13,19 @@ import javax.enterprise.context.RequestScoped;
 import javax.sql.DataSource;
 
 import com.sun.istack.logging.Logger;
+import java.sql.DatabaseMetaData;
 
 @RequestScoped
 public class Queries implements Serializable {
 
+    Logger LOGGER = Logger.getLogger(this.getClass());
+    
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Resource(name="jdbc/mysqlpool")
+	@Resource(lookup="jdbc/mysqlpool")
 	DataSource ds;
 	
 	private static final String dropTable = "DROP TABLE IF EXISTS rivers";
@@ -33,9 +36,13 @@ public class Queries implements Serializable {
 	//@PostConstruct
 	public void postConstruct() throws SQLException{
 		if (ds == null){
-			Logger.getLogger(getClass()).log(Level.SEVERE, "Data source is null!");
+			LOGGER.log(Level.SEVERE, "Data source is null!");
 			return;
 		}
+                com.sun.gjc.spi.jdbc40.DataSource40 mysqlds = (com.sun.gjc.spi.jdbc40.DataSource40) ds;
+                DatabaseMetaData mdm = mysqlds.getConnection().getMetaData();
+                LOGGER.log(Level.SEVERE, mdm.getDatabaseProductName() + mdm.getDatabaseProductVersion());
+                
             try (Connection connection = ds.getConnection()) {
                 Statement state = connection.createStatement();
                 state.execute(dropTable);
