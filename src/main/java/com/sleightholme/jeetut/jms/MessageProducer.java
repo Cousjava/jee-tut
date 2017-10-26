@@ -17,10 +17,8 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
-import javax.ejb.Schedule;
 import javax.inject.Inject;
 import javax.jms.JMSContext;
-import javax.jms.JMSDestinationDefinition;
 import javax.jms.Queue;
 
 /**

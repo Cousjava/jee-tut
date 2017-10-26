@@ -20,6 +20,7 @@ public abstract class ExtendedServlet extends HttpServlet {
     protected HttpServletResponse response;
     protected String title = "";
     protected String root;
+    protected long lastModified = -1;
     
     @Override
     protected abstract void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;  
@@ -50,6 +51,7 @@ public abstract class ExtendedServlet extends HttpServlet {
         out = response.getWriter();
         root = getServletContext().getContextPath();
         super.service(request, resp);
+        lastModified = System.currentTimeMillis();
     }
 
     protected void newLine() {
@@ -60,5 +62,10 @@ public abstract class ExtendedServlet extends HttpServlet {
     public String getServletInfo() {
         return title;
     }
+    
+    @Override
+    protected long getLastModified(HttpServletRequest req){
+        return lastModified;
+    }  
 
 }

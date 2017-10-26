@@ -36,8 +36,7 @@ import javax.jms.MessageListener;
     destinationName = "simpleQ"
 )
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationLookup",
-            propertyValue = "java:global/queue/simpleQ"),
+    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/queue/simpleQ"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
 public class MessageConsumer implements MessageListener {

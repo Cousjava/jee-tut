@@ -1,7 +1,5 @@
 package com.sleightholme.jeetut.jms;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -25,9 +23,9 @@ import javax.jms.MessageListener;
         destinationName = "firstQ"
 )
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:app/queue/firstQ")
-    ,
+    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:app/queue/firstQ"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
+   // @ActivationConfigProperty(propertyName = "resourceAdapter", propertyValue ="${adaptor.name}")
 })
 @Singleton
 public class JMSListener implements MessageListener {
@@ -47,8 +45,8 @@ public class JMSListener implements MessageListener {
             messageDetails.put("Delivery Mode", Integer.toString(message.getJMSDeliveryMode()));
 
             Logger.getLogger("com.sleightholme.jms").log(Level.INFO, consumer.messageString(message, "\n"));
-            //consumer.consumeMessage();
-            consumer.addMessage(message);
+            Logger.getLogger("com.sleightholme.jms").log(Level.INFO, message.getClass().getCanonicalName());
+            consumer.addQueueMessage(message);
 
         } catch (JMSException ex) {
             Logger.getLogger(JMSListener.class.getName()).log(Level.SEVERE, "Error processing JMS Message", ex);
