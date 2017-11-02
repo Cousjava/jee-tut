@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.jms.JMSDestinationDefinition;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -25,9 +24,7 @@ import javax.jms.MessageListener;
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:app/queue/firstQ"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
-   // @ActivationConfigProperty(propertyName = "resourceAdapter", propertyValue ="${adaptor.name}")
 })
-@Singleton
 public class JMSListener implements MessageListener {
 
     @Inject
@@ -36,7 +33,7 @@ public class JMSListener implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            message.acknowledge();//Otherwise the thread hangs around forever
+            //message.acknowledge();//Otherwise the thread hangs around forever
             Map<String, String> messageDetails = new LinkedHashMap<String, String>();
             messageDetails.put("MessageID", message.getJMSMessageID());
             messageDetails.put("Message Type", message.getJMSType());
@@ -44,7 +41,7 @@ public class JMSListener implements MessageListener {
             messageDetails.put("Destintation", message.getJMSDestination().toString());
             messageDetails.put("Delivery Mode", Integer.toString(message.getJMSDeliveryMode()));
 
-            Logger.getLogger("com.sleightholme.jms").log(Level.INFO, consumer.messageString(message, "\n"));
+            Logger.getLogger("com.sleightholme.jms").log(Level.INFO, "{0}{1}", new Object[]{consumer.messageString(message, "\n"), message.getBody(String.class)});
             Logger.getLogger("com.sleightholme.jms").log(Level.INFO, message.getClass().getCanonicalName());
             consumer.addQueueMessage(message);
 

@@ -27,16 +27,17 @@ public class Index extends ExtendedServlet {
             throws ServletException, IOException {
         header();
         out.println("<h1>Java EE Examples</h1>");
-        out.println("<p><a href=\"cdi\">CDI</a></p>");
-        out.println("<p><a href=\"EJBExample\">EJBs</a></p>");
-        out.println("<p><a href=\"book\">JAX-WS</a></p>");
-        out.println("<p><a href=\"JobServlet\">JBatch</a></p>");
-        out.println("<p><a href=\"Jpa/Manager\">JPA</a></p>");
-        out.println("<p><a href=\"Json/Index\">JSON</a></p>");
-        out.println("<p><a href=\"Mysql\">MySQL</a></p>");
-        out.println("<p><a href=\"Validation\">Bean Validation</a></p>");
-        out.println("<p><a href=\"Concurrency/\">Concurrency</a></p>");
-        out.println("<p><a href=\"JMSSender\">Java Messaging Service</a></p>");
+        out.println("<p><a href=\"" + root + "/cdi\">CDI</a></p>");
+        out.println("<p><a href=\"" + root + "/EJBExample\">EJBs</a></p>");
+        out.println("<p><a href=\"" + root + "/book\">JAX-WS</a></p>");
+        out.println("<p><a href=\"" + root + "/JobServlet\">JBatch</a></p>");
+        out.println("<p><a href=\"" + root + "/Jpa/Manager\">JPA</a></p>");
+        out.println("<p><a href=\"" + root + "/Json/Index\">JSON</a></p>");
+        out.println("<p><a href=\"" + root + "/Mysql\">MySQL</a></p>");
+        out.println("<p><a href=\"" + root + "/Validation\">Bean Validation</a></p>");
+        out.println("<p><a href=\"" + root + "/Concurrency/\">Concurrency</a></p>");
+        out.println("<p><a href=\"" + root + "/JMSSender\">Java Messaging Service</a></p>");
+        out.println("<p><a href=\"" + root + "/Login\">Soteria Security</a></p>");
         
         MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
         out.println("The default MBeanServer is " + mBeanServer.getDefaultDomain() + "</br>");
@@ -45,7 +46,6 @@ public class Index extends ExtendedServlet {
         }
         
         out.println("The JVM is " + System.getProperty("java.vm.name") + "</br>");
-        
         
         footer();
     }

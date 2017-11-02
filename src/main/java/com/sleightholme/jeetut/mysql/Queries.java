@@ -7,18 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
-
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.sql.DataSource;
-
-import com.sun.istack.logging.Logger;
 import java.sql.DatabaseMetaData;
 
 @RequestScoped
 public class Queries implements Serializable {
 
-    Logger LOGGER = Logger.getLogger(this.getClass());
+    Logger LOGGER = Logger.getLogger(this.getClass().getName());
     
 	/**
 	 * 
@@ -58,10 +56,10 @@ public class Queries implements Serializable {
 			state.setInt(2, riverLength);
 			state.executeQuery();
 		} catch (SQLException e) {
-			Logger.getLogger(getClass()).log(Level.SEVERE,e.getMessage());
+			LOGGER.log(Level.SEVERE,e.getMessage());
 			return;
 		}
-		Logger.getLogger(getClass()).log(Level.FINE, "Query executed succesfully");
+		LOGGER.log(Level.FINE, "Query executed succesfully");
 		
 	}
 	
@@ -71,7 +69,7 @@ public class Queries implements Serializable {
 			ResultSet rs = state.executeQuery("SELECT * FROM rivers");
 			return rs;
 		} catch (SQLException e) {
-			Logger.getLogger(getClass()).log(Level.SEVERE,e.getMessage());
+			LOGGER.log(Level.SEVERE,e.getMessage());
 		}
 		return null;
 	}

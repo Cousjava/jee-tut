@@ -65,6 +65,16 @@ public class MessageSender extends ExtendedServlet {
             producer.send(topic, message);
             out.println("Message sent to topic!");
         }
+        out.println("JMS Context setting is transactional: " + ctx.getTransacted());
+        int ackmode = ctx.getSessionMode();
+        switch (ackmode){
+            case JMSContext.AUTO_ACKNOWLEDGE: out.println("<p>JMS Context mode is AUTO_ACKNOWLEDGE");break;
+            case JMSContext.CLIENT_ACKNOWLEDGE: out.println("<p>JMS Context mode is CLIENT_ACKNOWLEDGE");break;
+            case JMSContext.DUPS_OK_ACKNOWLEDGE: out.println("<p>JMS Context mode is DUPS_OK_ACKNOWLEDGE");break;
+            case JMSContext.SESSION_TRANSACTED: out.println("<p>JMS Context mode is SESSION_TRANSACTED");break;
+            default: out.println("<p>JMS Context mode is invalid - value is " + ackmode);break;
+        }
+        
         out.append("<h1>Send JMS Message via queue:</h1>");
         printForm(QUEUE);
         out.append("<h1>Send JMS Message via topic:</h1>");
