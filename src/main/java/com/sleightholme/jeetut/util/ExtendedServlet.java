@@ -30,6 +30,9 @@ public abstract class ExtendedServlet extends HttpServlet {
         doGet(request, response);
     }
 
+    /**
+     * Print out the HTML header and opens the body of the page
+     */
     public void header() {
         response.setContentType("text/html;charset=UTF-8");
         out.println("<!DOCTYPE html>");
@@ -40,6 +43,9 @@ public abstract class ExtendedServlet extends HttpServlet {
         out.println("<body>");
     }
 
+    /**
+     * Prints out the end of html body and page
+     */
     public void footer() {
         out.println("</body></html>");
     }

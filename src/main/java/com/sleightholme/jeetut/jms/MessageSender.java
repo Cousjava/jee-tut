@@ -1,7 +1,9 @@
 package com.sleightholme.jeetut.jms;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
+import com.sun.jna.Native;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.jms.CompletionListener;
@@ -10,6 +12,7 @@ import javax.jms.Destination;
 import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
+import javax.jms.JMSSessionMode;
 import javax.jms.Message;
 import javax.jms.Queue;
 import javax.jms.Topic;
@@ -29,6 +32,7 @@ public class MessageSender extends ExtendedServlet {
     private static final String TOPIC = "topic";
 
     @Inject
+    @JMSSessionMode(JMSContext.CLIENT_ACKNOWLEDGE)
     private JMSContext ctx;
     
     @Resource(lookup = "java:app/queue/firstQ")
@@ -50,7 +54,7 @@ public class MessageSender extends ExtendedServlet {
             String message = request.getParameter("message");
             if (ctx != null) {
                 JMSProducer producer = ctx.createProducer();
-                producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+                producer.setDeliveryMode(DeliveryMode.PERSISTENT);
                 producer.send(queue, message);
                 out.println("Message sent to queue!");
             } else {

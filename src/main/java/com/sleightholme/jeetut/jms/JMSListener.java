@@ -40,7 +40,6 @@ public class JMSListener implements MessageListener {
             messageDetails.put("Message", message.getBody(String.class));
             messageDetails.put("Destintation", message.getJMSDestination().toString());
             messageDetails.put("Delivery Mode", Integer.toString(message.getJMSDeliveryMode()));
-
             Logger.getLogger("com.sleightholme.jms").log(Level.INFO, "{0}{1}", new Object[]{consumer.messageString(message, "\n"), message.getBody(String.class)});
             Logger.getLogger("com.sleightholme.jms").log(Level.INFO, message.getClass().getCanonicalName());
             consumer.addQueueMessage(message);

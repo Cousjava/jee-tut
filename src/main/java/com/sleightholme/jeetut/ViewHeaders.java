@@ -2,6 +2,7 @@ package com.sleightholme.jeetut;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
 import java.io.IOException;
+import java.security.Principal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.Enumeration;
 import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,7 +37,14 @@ public class ViewHeaders extends ExtendedServlet {
         
         out.println("Last Modified: " +  LocalDateTime.ofInstant(Instant.ofEpochMilli(lastModified), TimeZone.getTimeZone("GMT").toZoneId()).toString());
         called++;
-        out.println("Called times: " + called);
+        out.println("<p>Called times: " + called + "</p>");
+        out.println("Cookies are: <p>");
+        for (Cookie cookie: request.getCookies()){
+            out.println(cookie.getName() + ":" + cookie.getValue() + cookie.toString());
+        }
+        out.println("Auth type is " + request.getAuthType() + "<p>");
+        out.println("Principal is " + request.getUserPrincipal());
+        newLine();
         footer();
     }
 

@@ -66,7 +66,7 @@ public class MysqlExample extends ExtendedServlet {
             e.printStackTrace();
         }
 
-        out.println("<p>8</p>");
+        out.println("<p>11</p>");
         out.append("Served at: ").append(request.getContextPath());
 
         footer();
