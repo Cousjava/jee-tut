@@ -36,7 +36,7 @@ public class Queries implements Serializable {
         try {
             com.sun.gjc.spi.jdbc40.DataSource40 mysqlds = (com.sun.gjc.spi.jdbc40.DataSource40) ds;
             DatabaseMetaData mdm = mysqlds.getConnection().getMetaData();
-            LOGGER.log(Level.SEVERE, mdm.getDatabaseProductName() + mdm.getDatabaseProductVersion());
+            LOGGER.log(Level.SEVERE, "{0} {1}", new Object[]{mdm.getDatabaseProductName(), mdm.getDatabaseProductVersion()});
         } catch (ClassCastException e){
             LOGGER.log(Level.SEVERE, "failed to get cast class {0}", ds.getClass().getCanonicalName());
         }

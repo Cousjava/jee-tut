@@ -1,5 +1,6 @@
 package com.sleightholme.jeetut.jpa;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -17,6 +18,8 @@ public class User {
 	private Basket basket;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateRegistered;
+        
+        Runnable r = (Runnable & Serializable)() -> System.out.println("Serializable!");
 	
 	public User(){
 		dateRegistered = new Date();
@@ -65,5 +68,13 @@ public class User {
 	public void setBasket(Basket basket) {
 		this.basket = basket;
 	}
+        
+        public Runnable getR(){
+            return r;
+        }
+        
+        public void setR(Runnable r){
+            this.r = r;
+        }
 	
 }

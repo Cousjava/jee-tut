@@ -19,8 +19,4 @@ public class Manager {
         return em;
     }
     
-    public EntityTransaction getNewTransaction(){
-        return em.getTransaction();
-    }
-    
 }

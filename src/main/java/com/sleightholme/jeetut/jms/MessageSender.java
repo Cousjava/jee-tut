@@ -1,19 +1,13 @@
 package com.sleightholme.jeetut.jms;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
-import com.sun.jna.Native;
-import java.io.IOException;
-import java.util.HashMap;
+import java.io.IOException;;
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.jms.CompletionListener;
 import javax.jms.DeliveryMode;
-import javax.jms.Destination;
-import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
-import javax.jms.JMSSessionMode;
-import javax.jms.Message;
+import javax.jms.JMSSessionMode;;
 import javax.jms.Queue;
 import javax.jms.Topic;
 import javax.servlet.ServletException;
@@ -64,7 +58,6 @@ public class MessageSender extends ExtendedServlet {
         } else if (request.getParameter(TOPIC) != null){
             TopicMessage message = new TopicMessage(request.getParameter("message"), this.getClass());
             JMSProducer producer = ctx.createProducer();
-            
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
             producer.send(topic, message);
             out.println("Message sent to topic!");

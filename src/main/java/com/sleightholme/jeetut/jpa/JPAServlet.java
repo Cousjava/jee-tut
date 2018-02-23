@@ -67,6 +67,7 @@ public class JPAServlet extends ExtendedServlet {
                 
                 out.println("Retrieving data: User 1");
                 User retrievedUser = em.find(User.class, 1);
+                user.getR().run();
                 out.println("<p>" + retrievedUser.getUsername() + "</br>");
                 out.println(retrievedUser.getEmail() + "</br>");
                 out.println(retrievedUser.getRegistrationDate().toString() + "</br>");

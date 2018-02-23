@@ -2,9 +2,8 @@ package com.sleightholme.jeetut;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
 import java.io.IOException;
-import java.security.Principal;
+import java.io.PrintStream;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Enumeration;
 import java.util.TimeZone;
@@ -45,9 +44,9 @@ public class ViewHeaders extends ExtendedServlet {
         out.println("Auth type is " + request.getAuthType() + "<p>");
         out.println("Principal is " + request.getUserPrincipal());
         newLine();
-        footer();
+        footer();        
     }
-
+    
     private void printHeaders(HttpServletRequest req) {
         Enumeration<String> headernames = request.getHeaderNames();
         while (headernames.hasMoreElements()) {
