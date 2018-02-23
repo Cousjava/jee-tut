@@ -1,10 +1,15 @@
 package com.sleightholme.jeetut.hk2;
 
+import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
+import org.glassfish.hk2.api.InheritableThread;
 import org.glassfish.hk2.api.IterableProvider;
+import org.glassfish.hk2.api.ServiceLocator;
+import org.glassfish.hk2.api.messaging.SubscribeTo;
+import org.glassfish.hk2.api.messaging.Topic;
 import org.jvnet.hk2.annotations.Service;
 
 /**
@@ -12,7 +17,7 @@ import org.jvnet.hk2.annotations.Service;
  * @author jonathan
  */
 @Service
-// Default scope is Singleton/Application Scoped
+@InheritableThread
 public class Station {
     
     @Inject
@@ -25,23 +30,36 @@ public class Station {
     @Inject @Named("Aeroplane")
     private Provider<Vehicle> plane;
     
+    private ArrayList<Vehicle> present;
+    private String name;
+    
+    @Inject
+    ServiceLocator habitat;
+    
     @PostConstruct
     public void postConstuct(){
-        car.getName();
+        present = new ArrayList<>();
+        name = "Shrub Hill";
+        
     }
     
-    public Vehicle getPlane(){
-        return plane.get();
-    }
-    
-    public Vehicle getSlowTrain(){
+    public ArrayList<Vehicle> getAllVehicles(){
+        present.add(car);
         for (Vehicle train: trains){
-            if (train.getName().contains("T")){
-                return train;
-            }
+            present.add(train);
         }
-        return null;
+        present.add(plane.get());
+        return present;
     }
+
+    public void Arrival(@SubscribeTo Arrival arrived){
+        present.add(arrived.getVehicle());
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
     
     
 }
