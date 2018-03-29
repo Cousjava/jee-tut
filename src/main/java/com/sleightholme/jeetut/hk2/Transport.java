@@ -15,7 +15,7 @@ import org.glassfish.hk2.api.messaging.Topic;
  *
  * @author jonathan
  */
-@WebServlet(name = "Transport", urlPatterns = {"/Transport"})
+//@WebServlet(name = "Transport", urlPatterns = {"/Transport"})
 public class Transport extends ExtendedServlet {
 
     private ServiceLocator habitat;

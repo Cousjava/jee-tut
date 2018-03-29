@@ -5,7 +5,7 @@
     <version>0.13.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>jee-tut</name>
-    <description>Java EE Samples</description>
+    <description>Jakarta EE Samples</description>
     <build>
         <plugins>
             <plugin>
@@ -71,13 +71,6 @@
             <groupId>org.glassfish.soteria</groupId>
             <artifactId>javax.security.enterprise</artifactId>
             <version>1.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.security.enterprise</groupId>
-            <artifactId>javax.security.enterprise-api</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
             <scope>provided</scope>
         </dependency>
     </dependencies>

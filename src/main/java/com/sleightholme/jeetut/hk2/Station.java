@@ -9,15 +9,14 @@ import org.glassfish.hk2.api.InheritableThread;
 import org.glassfish.hk2.api.IterableProvider;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.hk2.api.messaging.SubscribeTo;
-import org.glassfish.hk2.api.messaging.Topic;
 import org.jvnet.hk2.annotations.Service;
 
 /**
  *
  * @author jonathan
  */
-@Service
-@InheritableThread
+//@Service
+//@InheritableThread
 public class Station {
     
     @Inject
@@ -37,7 +36,7 @@ public class Station {
     ServiceLocator habitat;
     
     @PostConstruct
-    public void postConstuct(){
+    public void postConstuct(){        
         present = new ArrayList<>();
         name = "Shrub Hill";
         

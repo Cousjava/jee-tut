@@ -71,7 +71,7 @@ public class CheckAuth implements HttpAuthenticationMechanism {
                 }
             } else {
                 try {
-                    logger.log(Level.INFO, "Logging out");
+                    logger.log(Level.FINE, "Logging out");
                     request.logout();
                 } catch (ServletException ex) {
                     Logger.getLogger("sleightholme.security").log(Level.FINE, "Error logging out", ex);
