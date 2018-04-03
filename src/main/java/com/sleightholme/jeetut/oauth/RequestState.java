@@ -39,48 +39,25 @@
  */
 package com.sleightholme.jeetut.oauth;
 
-import com.sleightholme.jeetut.util.ExtendedServlet;
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.inject.Inject;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author jonathan
  */
-@WebServlet(name = "AuthGithub", urlPatterns = {"/AuthGithub"})
-public class AuthGithub extends ExtendedServlet {
-
-    private static final String CLIENT_ID="0196c84ee1abd053acb5";
-    private static final String CLIENT_SECRET="27a29b8a6ad63ad37feb5fb959b69462cc9448e9";
+@SessionScoped
+public class RequestState implements Serializable {
     
-    @Inject
-    RequestState state;
+    private String heldState;
     
-    @Override
-    public void init(){
-        title = "Github Auth";
+    public void setState(String state){
+        heldState = state;
     }
     
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        header();
-        state.setState("/Callback");
-        response.sendRedirect("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID + "&state=" + state.getState());
-        
-        footer();
+    public String getState(){
+        return heldState;
     }
-
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
+    
 }

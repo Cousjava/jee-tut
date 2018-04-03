@@ -24,9 +24,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author jonathan coustick
  */
 // with defaults lasts for 1 day
-@ApplicationScoped
+//@ApplicationScoped
 //@RememberMe
-@AutoApplySession
+//@AutoApplySession
 public class CheckAuth implements HttpAuthenticationMechanism {
 
     @Inject
@@ -71,8 +71,8 @@ public class CheckAuth implements HttpAuthenticationMechanism {
                 }
             } else {
                 try {
-                    logger.log(Level.FINE, "Logging out");
                     request.logout();
+                    logger.log(Level.FINE, "Logging out");
                 } catch (ServletException ex) {
                     Logger.getLogger("sleightholme.security").log(Level.FINE, "Error logging out", ex);
                 }
