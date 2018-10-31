@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-public class Store implements Serializable{
+public class Store implements Serializable {
 
 	private static final long serialVersionUID = -3006823997028319420L;
 	protected ArrayList<String> strings;

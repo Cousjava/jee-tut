@@ -6,11 +6,8 @@ import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 
 @ConversationScoped
-public class ConversationStore extends Store{
+public class ConversationStore extends Store {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7643456260344766805L;
 
 	@Inject

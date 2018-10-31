@@ -2,8 +2,10 @@ package com.sleightholme.jeetut.cdi;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import org.eclipse.microprofile.opentracing.Traced;
 
 @RequestScoped
+@Traced
 public class RequestStore extends Store{
 
 	/**

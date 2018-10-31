@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import javax.annotation.Resource;
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.json.Json;
 import javax.json.JsonReader;
 import javax.json.JsonStructure;
@@ -14,8 +16,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.eclipse.microprofile.opentracing.Traced;
 
 @Path("/Json/rs")
+//@DeclareRoles("foo")
+//@RolesAllowed("foo")
 public class JsonRS {
 
 	JsonStructure obj;
@@ -31,6 +36,7 @@ public class JsonRS {
 		
 	}
 	
+        @Traced
 	private void readData(String filepath) throws FileNotFoundException{
 		JsonReader read;
 		try {			

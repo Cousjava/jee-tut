@@ -4,12 +4,9 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 
 @SessionScoped
-public class SessionStore extends Store{
+public class SessionStore extends Store {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 10L;
 	
 	@PostConstruct
 	@Override

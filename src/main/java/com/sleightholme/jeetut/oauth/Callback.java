@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
  *
  * @author jonathan
  */
-@WebServlet(name="Callback", urlPatterns={"/Callback"})
+@WebServlet(name="Callback", urlPatterns={"/callback"})
 public class Callback extends ExtendedServlet {
 
     private static final String CLIENT_ID="0196c84ee1abd053acb5";

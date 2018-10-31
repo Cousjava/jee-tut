@@ -34,7 +34,7 @@ public class Queries implements Serializable {
             return;
         }
         try {
-            com.sun.gjc.spi.jdbc40.DataSource40 mysqlds = (com.sun.gjc.spi.jdbc40.DataSource40) ds;
+            com.mysql.cj.jdbc.MysqlDataSource mysqlds = (com.mysql.cj.jdbc.MysqlDataSource) ds;
             DatabaseMetaData mdm = mysqlds.getConnection().getMetaData();
             LOGGER.log(Level.SEVERE, "{0} {1}", new Object[]{mdm.getDatabaseProductName(), mdm.getDatabaseProductVersion()});
         } catch (ClassCastException e){
