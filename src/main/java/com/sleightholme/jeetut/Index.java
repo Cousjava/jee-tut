@@ -27,6 +27,7 @@ public class Index extends ExtendedServlet {
             throws ServletException, IOException {
         header();
         out.println("<h1>Java EE Examples</h1>");
+        out.println("version 6");
         out.println("<p><a href=\"" + root + "/cdi\">CDI</a></p>");
         out.println("<p><a href=\"" + root + "/EJBExample\">EJBs</a></p>");
         out.println("<p><a href=\"" + root + "/book\">JAX-WS</a></p>");
