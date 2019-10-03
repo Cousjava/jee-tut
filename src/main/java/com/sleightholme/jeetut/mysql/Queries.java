@@ -12,8 +12,13 @@ import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.sql.DataSource;
 import java.sql.DatabaseMetaData;
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
-@RequestScoped
+@Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class Queries implements Serializable {
 
     private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
@@ -34,9 +39,11 @@ public class Queries implements Serializable {
             return;
         }
         try {
-            com.mysql.cj.jdbc.MysqlDataSource mysqlds = (com.mysql.cj.jdbc.MysqlDataSource) ds;
-            DatabaseMetaData mdm = mysqlds.getConnection().getMetaData();
-            LOGGER.log(Level.SEVERE, "{0} {1}", new Object[]{mdm.getDatabaseProductName(), mdm.getDatabaseProductVersion()});
+            com.sun.gjc.spi.jdbc40.DataSource40 unwrappedDS = (com.sun.gjc.spi.jdbc40.DataSource40) ds;
+            
+            com.mysql.cj.jdbc.MysqlDataSource mysqlds = unwrappedDS.unwrap(com.mysql.cj.jdbc.MysqlDataSource.class);
+            //DatabaseMetaData mdm = mysqlds.getConnection().getMetaData();
+            //LOGGER.log(Level.SEVERE, "{0} {1}", new Object[]{mdm.getDatabaseProductName(), mdm.getDatabaseProductVersion()});
         } catch (ClassCastException e){
             LOGGER.log(Level.SEVERE, "failed to get cast class {0}", ds.getClass().getCanonicalName());
         }

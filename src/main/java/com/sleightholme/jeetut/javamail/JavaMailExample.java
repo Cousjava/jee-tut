@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.mail.MailSessionDefinition;
-import javax.mail.Message;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.servlet.ServletException;
