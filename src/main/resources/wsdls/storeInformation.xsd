@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema/" targetNamespace="http://endpoint.jaxws.jeetut.sleightholme.com/" xmlns:tns="http://localhost/jee-tut/" xmlns="http://schemas.xmlsoap.org/wsdl/ elementFormDefault="qualified">
+	<xsd:element name="storeInformation">
+        <xsd:annotation>
+            <xsd:documentation>Describes established stores at a specific time for one or more stores</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="collectEvent" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>The status of response and time when the data were collected. If status!=OK an error occurred and status contains the reason.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="collectTime" type="xsd:dateTime"/>
+                            <xsd:element name="responseStatus" type="xsd:string"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                
+                <xsd:element name="storeDetails" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>The store identification number and visit info for the store</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="storeNo" type="xsd:integer"/>
+                            <xsd:element name="countryCode" type="xsd:string"/>
+                            <xsd:element name="regionCode" type="xsd:integer"/>
+                            <xsd:element name="phoneNo" type="xsd:string"/>
+                            <xsd:element name="faxNo" type="xsd:string"/>
+                            <xsd:element name="visitStoreName" type="xsd:string"/>
+                            <xsd:element name="visitStreetAddress" type="xsd:string"/>
+                            <xsd:element name="visitPostalCode" type="xsd:string"/>
+                            <xsd:element name="visitCityAddress" type="xsd:string"/>
+                            <xsd:element name="geoPosLatitude" type="xsd:double"/>
+                            <xsd:element name="geoPosLongitude" type="xsd:double"/>
+                            <xsd:element name="openHoursWeekdays" type="xsd:string"/>
+                            <xsd:element name="openHoursSaturday" type="xsd:string"/>
+                            <xsd:element name="openHoursSunday" type="xsd:string"/>
+                            <xsd:element name="openHoursSeason" minOccurs="0">
+                              <xsd:complexType>
+                                <xsd:sequence>
+                                  <xsd:element name="openHoursExtra" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                              </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

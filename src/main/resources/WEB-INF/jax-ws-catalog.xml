@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/home/jonathan/NetBeansProjects/jee-tut/src/main/resources/wsdls/ECommerceWSProxy.wsdl" uri="wsdl/ECommerceWSProxy.wsdl"/>
+    <system systemId="file:/home/jonathan/.netbeans/8.2/config/WebServices/GlobalAddressVerification5/catalog/wsparam.strikeiron.com/GlobalAddressVerification5.wsdl" uri="wsdl/GlobalAddressVerification5.wsdl" uri="wsdl/ECommerceWSProxy.wsdl"/>
+    <system systemID="file:/home/jonathan/.netbeans/8.2/config/WebServices/EmailVerify5/catalog/wsparam.strikeiron.com/EmailVerify5.wsdl" uri="http://wsparam.strikeiron.com/GlobalAddressVerification5?WSDL"/>
+</catalog>

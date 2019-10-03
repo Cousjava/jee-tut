@@ -9,6 +9,65 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <!--Stubs can be created either by wsdl URL (GlassFish need to be running with the WS deployed)-->
+                            <!--Or by wsdl files (these files are located under the wsdl directory)-->
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <!-- <wsdlDirectory>/home/jonathan/NetBeansProjects/jee-tut/src/main/resources/wsdls</wsdlDirectory> -->
+                            <wsdlFiles>
+                                <!-- <wsdlFile>/home/jonathan/NetBeansProjects/jee-tut/src/main/resources/wsdls/ECommerceWSProxy.wsdl</wsdlFile> -->
+                            </wsdlFiles>
+                            
+                            <keep>true</keep>
+                            <catalog>src/main/resources/WEB-INF/javax-ws-catalog.xml</catalog>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>GlobalAddressVerification5.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName></packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>file:/home/jonathan/.netbeans/8.2/config/WebServices/GlobalAddressVerification5/catalog/wsparam.strikeiron.com/GlobalAddressVerification5.wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/GlobalAddressVerification5.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-GlobalAddressVerification5</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.glassfish.hk2</groupId>
+                <artifactId>hk2-inhabitant-generator</artifactId>
+                <version>2.6.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-inhabitants</goal>
+                        </goals>
+                        <configuration>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
@@ -22,6 +81,24 @@
                 <configuration>
                     <warSourceDirectory>src/main/resources</warSourceDirectory>
                     <warName>jee-tut</warName>
+                    <webResources>
+                        <resource>
+                            <directory>src</directory>
+                            <targetPath>WEB-INF</targetPath>
+                            <includes>
+                                <include>jax-ws-catalog.xml</include>
+                                <include>wsdl/**</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>src</directory>
+                            <targetPath>WEB-INF/classes/META-INF</targetPath>
+                            <includes>
+                                <include>jax-ws-catalog.xml</include>
+                                <include>wsdl/**</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
@@ -49,7 +126,7 @@
         <dependency>
             <groupId>fish.payara.extras</groupId>
             <artifactId>payara-embedded-all</artifactId>
-            <version>5.191-SNAPSHOT</version>
+            <version>5.192</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
@@ -58,7 +135,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.12</version>
             <type>jar</type>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
