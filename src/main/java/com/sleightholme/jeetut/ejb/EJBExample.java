@@ -41,11 +41,11 @@ package com.sleightholme.jeetut.ejb;
 
 import com.sleightholme.jeetut.util.ExtendedServlet;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,6 +59,7 @@ public class EJBExample extends ExtendedServlet {
     @EJB
     OneChocolate singleton;
     
+    @Override
     public void init() throws ServletException{
         title = "EJB Examples";
         super.init();
@@ -69,6 +70,13 @@ public class EJBExample extends ExtendedServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         header();
+        synchronized (this) {
+            try {
+                this.wait(30000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(EJBExample.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         singleton.increment();
         out.println("The value of OneChocolate, a singleton is: " + singleton.getCalled() + "</br>");
         
